@@ -1,0 +1,61 @@
+{
+  "Type": "rest",
+  "CompanyName": "Tomsk",
+  "Host": "127.0.0.1",
+  "Port": 5000,
+  "Validate": true,
+  "Database": "mongo",
+  "Bus": "rabbit",
+  "CleanupIntervalSeconds": 5,
+  "OutboxMessageTtlSeconds": 10,
+  "IncidentEntitiesTtlMonths": 60,
+  
+  "PostgresDbSettings": {
+    "Host": "172.16.211.21",
+    "Port": 5432,
+    "Username": "gridjushko",
+    "Password": "VNS2ExXB",
+    "Database": "GatewayDB"
+  },
+  
+  "MongoDbSettings": {
+    "ConnectionString": "mongodb://root:root@172.16.211.20:27017/?authSource=admin",
+    "DatabaseName": "GatewayDB",
+    "User": "root",
+    "Password": "root",
+    "Collections": {
+      "QueueCollection": "QueueEntities",
+      "OutboxCollection": "OutboxMessages",
+      "IncidentCollection": "IncidentEntities"
+    }
+  },
+  
+  "RabbitMqSettings": {
+    "InstanceNetworkGateId": "gate-tomsk-001",
+    "TypeToRun": "RabbitMQ",
+    "HostName": "172.16.211.18",
+    "Port": 5672,
+    "UserName": "admin",
+    "Password": "admin",
+    "VirtualHost": "termidesk",
+    "PushQueueName": "tomsk_in",
+    "ListenQueueName": "tomsk_out",
+    "Heartbeat": "60"
+  },
+  
+  "ActiveMqSettings": {
+    "InstanceNetworkGateId": "gate-tomsk-001",
+    "TypeToRun": "ActiveMQ",
+    "BrokerUri": "tcp://172.16.211.19:61616",
+    "QueueName": "tomsk.queue"
+  },
+  
+  "KafkaStreamsSettings": {
+    "InstanceNetworkGateId": "gate-tomsk-001", 
+    "TypeToRun": "Kafka",
+    "BootstrapServers": "172.16.211.20:9092",
+    "ApplicationId": "slow-light-requests-gate-tomsk",
+    "InputTopic": "tomsk-input",
+    "OutputTopic": "tomsk-output"
+  }
+}
